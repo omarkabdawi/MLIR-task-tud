@@ -34,3 +34,51 @@ CMake so that it installs `FileCheck` to the chosen installation prefix.
 ## License
 
 This dialect template is made available under the Apache License 2.0 with LLVM Exceptions. See the `LICENSE.txt` file for more details.
+
+## PolyBench reference implementations
+
+The Part 2 stencil kernels are tested against the PolyBench/C reference
+implementations of Jacobi-2D and Seidel-2D.
+
+The PolyBench/C source code is included under `polybench-c/`:
+- Upstream repository: https://github.com/hyunsungc/polybench-c
+- Included revision: `9f375d85e123c999cb39dd54cbbe6e8c4917d7a8`
+
+PolyBench/C is distributed under the Ohio State University Software
+Distribution License. Its original license and copyright notices are
+preserved in `polybench-c/LICENSE.txt`.
+
+The license of the PolyBench/C sources is separate from the Apache
+License 2.0 with LLVM Exceptions that applies to the dialect template.
+
+## Reproducing the coursework results
+
+The repository includes two scripts that automate the compilation and testing workflows.
+
+### Requirements
+
+- LLVM/MLIR 23.1.3, built with MLIR enabled and installed.
+- `clang`, `cmake`, and `ninja`.
+- The LLVM build directory containing `llvm-lit`.
+
+The scripts use these default paths:
+
+- LLVM/MLIR installation: `$HOME/mlir-work/llvm-install`
+- LLVM build directory: `$HOME/mlir-work/build`
+
+If your paths differ, set `LLVM_INSTALL_DIR` and, for Part 2,
+`LLVM_BUILD_DIR` before running the scripts.
+
+### Part 1: Matrix multiplication
+
+Run `./run-part1.sh`.
+
+### Part 2: Stencil dialect and PolyBench comparison
+
+Run `./run-part2.sh`.
+
+The Part 2 script builds `standalone-opt`, runs the dialect tests,
+lowers the stencil kernels to LLVM IR, compiles them, and compares
+their results against the PolyBench/C reference implementations.
+
+Generated build outputs are written under `build/submission/`.

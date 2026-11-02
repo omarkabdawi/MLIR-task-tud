@@ -8,3 +8,10 @@ cmake-build-debug/
 cmake-build-release/
 
 compile_commands.json
+
+# Generated build artifacts
+*.o
+*.ll
+/stencil-test
+/matmul_test
+/matmul_interchange_test
